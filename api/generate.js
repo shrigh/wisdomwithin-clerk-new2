@@ -6,7 +6,6 @@ export default async function handler(req, res) {
   }
 
   const { question } = req.body;
-
   if (!question) {
     return res.status(400).json({ error: "Missing question" });
   }
@@ -23,8 +22,7 @@ export default async function handler(req, res) {
         messages: [
           {
             role: "system",
-            content:
-              "You are a spiritual guide rooted in Indian wisdom. Respond with clarity and compassion.",
+            content: "You are a spiritual guide rooted in Indian wisdom. Respond with clarity and compassion.",
           },
           {
             role: "user",
@@ -34,13 +32,19 @@ export default async function handler(req, res) {
       }),
     });
 
-    const data = await openaiRes.json();
+    if (!openaiRes.ok) {
+      console.error("OpenAI error response:", await openaiRes.text());
+      return res.status(500).json({ error: "OpenAI API error" });
+    }
 
-    const answer = data.choices?.[0]?.message?.content || "No answer found.";
-    return res.status(200).json({ answer });
+    const data = await openaiRes.json();
+    console.log("OpenAI API response:", data);
+
+    const answer = data.choices?.[0]?.message?.content?.trim();
+    res.status(200).json({ answer: answer || "No answer found." });
 
   } catch (err) {
     console.error("OpenAI error:", err);
-    return res.status(500).json({ error: "OpenAI request failed" });
+    res.status(500).json({ error: "OpenAI request failed" });
   }
 }
