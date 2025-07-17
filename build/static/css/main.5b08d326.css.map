@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.5b08d326.css","mappings":"AAAA,aAAe,iBAAoB,CCAnC,KAAO,sBAAuB,CAAE,QAAS,CAAE,SAAY","sources":["App.css","index.css"],"sourcesContent":["header nav a { margin-right: 1rem; }","body { font-family: sans-serif; margin: 0; padding: 0; }"],"names":[],"sourceRoot":""}

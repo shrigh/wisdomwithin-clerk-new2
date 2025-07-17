@@ -1,0 +1,11 @@
+node_modules
+.vercel
+.env
+.env.local
+*.log
+*.lock
+.DS_Store
+.git
+.gitignore
+README.md
+*.zip
