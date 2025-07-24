@@ -1,4 +1,4 @@
-// /api/generate.js
+// /api/generate.js gpt-4.1
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -12,38 +12,33 @@ export default async function handler(req, res) {
   }
 
   try {
-    const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo", // ✅ This is key!
+        model: "gpt-4.1",
         messages: [
-          {
-            role: "system",
-            content: "You are a spiritual guide rooted in Indian wisdom. Respond with clarity and compassion.",
-          },
-          {
-            role: "user",
-            content: question,
-          },
+          { role: "system", content: "You are a wise spiritual guide rooted in Hindu scriptures." },
+          { role: "user", content: question },
         ],
+        temperature: 0.7,
       }),
     });
 
-    if (!openaiRes.ok) {
-      console.error("OpenAI error response:", await openaiRes.text());
-      return res.status(500).json({ error: "OpenAI API error" });
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("OpenAI error response:", data);
+      return res.status(500).json({ error: data.error.message || "OpenAI API error" });
     }
 
-    const data = await openaiRes.json();
-    const answer = data.choices?.[0]?.message?.content?.trim();
-    res.status(200).json({ answer: answer || "No answer found." });
-
-  } catch (err) {
-    console.error("OpenAI error:", err);
-    res.status(500).json({ error: "OpenAI request failed" });
+    const answer = data.choices[0].message.content;
+    return res.status(200).json({ answer });
+  } catch (error) {
+    console.error("Server error:", error);
+    return res.status(500).json({ error: "Something went wrong." });
   }
 }
