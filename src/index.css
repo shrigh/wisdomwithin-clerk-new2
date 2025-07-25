@@ -10,8 +10,7 @@ body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
 .footerCnt a {color: #2c3e50;text-decoration: none;}
 .footerCnt a.pP {margin-left: 1rem;}
 
-@media (max-width: 768px) {
-  .some-class {
-    font-size: 1rem;
-  }
+@media (max-width: 600px){
+  .wrapPointerCnt {float: none;width: auto;height: auto;padding: 7% 4%;}
+  .wrapPointerCnt.wrapPointerCntMid {margin:8% 0;} 
 }
