@@ -1,0 +1,71 @@
+.header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+
+.logo h2 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.logo .tagline {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loginBtn {
+  margin-left: 1rem;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #0070f3;
+  background: #0070f3;
+  color: white;
+  cursor: pointer;
+}
+
+/* === Mobile Styles === */
+@media (max-width: 768px) {
+    .logo {width: 75%;}
+  .hamburger {
+    display: block;
+  }
+
+  .navMenu {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .navMenu.open {
+    display: flex;
+  }
+
+  .navMenu a, .navMenu button {
+    width: 100%;
+    text-align: right;
+    margin-right: 0;
+  }
+}
