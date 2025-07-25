@@ -16,7 +16,7 @@ export default function Home() {
         boxShadow: '0 4px 20px rgb(0 0 0 / 0.3)',
         marginBottom: '3rem'
       }}>
-        <h1 style={{fontSize: '2.8rem', marginBottom: '1rem', marginTop: '2rem', textShadow: '1px 1px 4px rgba(0,0,0,0.7)', display:"inline-block", width:'50%' }}>
+        <h1 style={{fontSize: '2.8rem', marginBottom: '1rem', textShadow: '1px 1px 4px rgba(0,0,0,0.7)', display:"inline-block" }}>
           Overcome Life’s Obstacles with Timeless Hindu Wisdom
         </h1>
         <p style={{ fontSize: '1.3rem', maxWidth: 500, margin: '0 auto 2rem', textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
