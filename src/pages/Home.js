@@ -33,6 +33,7 @@ export default function Home() {
             borderRadius: 6,
             cursor: 'pointer',
             boxShadow: '0 4px 10px rgb(0 112 243 / 0.5)',
+            fontFamily:'Poppins, sans-serif',
             transition: 'background-color 0.3s ease'
           }}
           onMouseOver={e => e.currentTarget.style.backgroundColor = '#005bb5'}

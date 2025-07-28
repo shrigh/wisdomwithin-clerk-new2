@@ -15,7 +15,9 @@ export default function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <h2>WisdomWithin</h2>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+    <h2>WisdomWithin</h2>
+  </Link>
         <div className="tagline">Built for Seekers, Powered by AI, Grounded in Hindu Wisdom</div>
       </div>
 
