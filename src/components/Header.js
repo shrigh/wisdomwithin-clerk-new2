@@ -16,9 +16,9 @@ export default function Header() {
     <header className="header">
       <div className="logo">
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-    <h2>WisdomWithin</h2>
+    <h2>My Eternal Guide</h2>
   </Link>
-        <div className="tagline">Built for Seekers, Powered by AI, Grounded in Hindu Wisdom</div>
+        <div className="tagline">The Right Guidance. At The Right Time.</div>
       </div>
 
       <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
@@ -28,7 +28,6 @@ export default function Header() {
       <nav className={`navMenu ${menuOpen ? "open" : ""}`}>
         <Link to="/" style={linkClass("/")} onClick={closeMenu}>Home</Link>
         <Link to="/quiz" style={linkClass("/quiz")} onClick={closeMenu}>Features</Link>
-        <Link to="/pricing" style={linkClass("/pricing")} onClick={closeMenu}>Pricing</Link>
         <Link to="/ask" style={linkClass("/ask")} onClick={closeMenu}>Ask</Link>
         <SignedOut>
           <SignInButton>

@@ -52,8 +52,8 @@ export default function Quiz() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // For now, just navigate to pricing (you can save quiz data later)
-    navigate('/pricing');
+    // For now, just navigate to Ask Your Question (you can save quiz data later)
+    navigate('/ask');
   };
 
   return (
@@ -74,7 +74,7 @@ export default function Quiz() {
                 value={em}
                 checked={selectedEmotion === em}
                 onChange={() => setSelectedEmotion(em)}
-                required
+                
               /> {em}
             </label>
           ))}
@@ -123,9 +123,9 @@ export default function Quiz() {
         <button type="submit" style={{
           backgroundColor: '#0070f3', color: 'white', border: 'none',
           padding: '0.8rem 1.5rem', borderRadius: 6, cursor: 'pointer',
-          fontSize: '1rem'
+          fontSize: '1rem',fontFamily:'Raleway, sans-serif'
         }}>
-          Continue to Pricing
+          Continue
         </button>
       </form>
       </section>
