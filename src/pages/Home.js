@@ -9,18 +9,18 @@ export default function Home() {
       {/* Hero Section */}
       <section className="bnrCnt" style={{
         textAlign: 'center',
-        padding: '4rem 1rem',
+        padding: '6rem 1rem',
         background: 'url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80) no-repeat center/cover',
         color: 'white',
         borderRadius: 0,
         boxShadow: '0 4px 20px rgb(0 0 0 / 0.3)',
         marginBottom: '3rem'
       }}>
-        <h1 style={{fontSize: '2.8rem', marginBottom: '1rem', textShadow: '1px 1px 4px rgba(0,0,0,0.7)', display:"inline-block" }}>
-          Overcome Life’s Obstacles with Timeless Hindu Wisdom
+        <h1 style={{marginBottom: '1rem', textShadow: '1px 1px 4px rgba(0,0,0,0.7)', display:"inline-block" }}>
+          Have a Life Question?
         </h1>
         <p style={{ fontSize: '1.3rem', maxWidth: 500, margin: '0 auto 2rem', textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
-          Get personalized answers rooted in the Vedas, Upanishads, Gita, Puranas and more.
+          Find timeless answers from Hindu scriptures clear, practical and personalized for you.
         </p>
         <button
           onClick={() => navigate('/quiz')}
@@ -33,7 +33,7 @@ export default function Home() {
             borderRadius: 6,
             cursor: 'pointer',
             boxShadow: '0 4px 10px rgb(0 112 243 / 0.5)',
-            fontFamily:'Poppins, sans-serif',
+            fontFamily:'Raleway, sans-serif',
             transition: 'background-color 0.3s ease'
           }}
           onMouseOver={e => e.currentTarget.style.backgroundColor = '#005bb5'}
