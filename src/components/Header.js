@@ -8,7 +8,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const linkClass = (path) =>
-    location.pathname === path ? { fontWeight: "600", textDecoration: "underline" } : {};
+    location.pathname === path ? { fontWeight: "400", textDecoration: "none", color:"#3499cd" } : {};
 
   const closeMenu = () => setMenuOpen(false);
 

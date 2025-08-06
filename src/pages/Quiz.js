@@ -108,14 +108,14 @@ export default function Quiz() {
               /> {energy}
             </label>
           ))}
-          <label style={{ display: 'block', margin: '0.5rem 0' }}>
+          <label style={{ display: 'block', margin: '0.7rem 0 0.5rem' }}>
             Your Guru or Other Energy (optional): <br />
             <input
               type="text"
               value={guruEnergy}
               onChange={e => setGuruEnergy(e.target.value)}
               placeholder="Enter here"
-              style={{ width: '100%', padding: '0.3rem', marginTop: '0.3rem' }}
+              style={{ width: '98%', padding: '0.3rem', marginTop: '0.3rem' }}
             />
           </label>
         </fieldset>
