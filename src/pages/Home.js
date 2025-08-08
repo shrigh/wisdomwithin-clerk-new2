@@ -34,6 +34,7 @@ export default function Home() {
             cursor: 'pointer',
             boxShadow: '0 4px 10px rgb(0 112 243 / 0.5)',
             fontFamily:'Raleway, sans-serif',
+            fontWeight:'normal',
             transition: 'background-color 0.3s ease'
           }}
           onMouseOver={e => e.currentTarget.style.backgroundColor = '#005bb5'}
@@ -46,7 +47,7 @@ export default function Home() {
       {/* How It Works Section */}
       <section className="howPowerCnt" style={{ marginBottom: '3rem', padding: '0 1rem' }}>
         <h2 className="h2Head">
-          How PowerWithin Works
+          How My Eternal Guide works
         </h2>
         <div className="wrapPointer">
           <div  className="wrapPointerCnt">Ask your real-life question</div>
@@ -56,10 +57,10 @@ export default function Home() {
       </section>
 
       <footer className="footerWrap">
-        <div>© 2025 PowerWithin. All rights reserved.</div>
+        <div>© 2025 My Eternal Guide. All rights reserved.</div>
         <div className="footerCnt">
-          <a href="#" >Terms & Conditions</a>
-          <a href="#" className="pP">Privacy Policy</a>
+          <a href="/termsconditions" >Terms & Conditions</a>
+          <a href="/privacypolicy" className="pP">Privacy Policy</a>
         </div>
       </footer>
     </main>
