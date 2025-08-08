@@ -13,8 +13,6 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import AskQuestion from "./pages/AskQuestion";
 import Quiz from "./pages/Quiz";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsConditions from "./pages/TermsConditions";
 import "./App.css";
 
 const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
