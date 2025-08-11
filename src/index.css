@@ -14,6 +14,9 @@ body { font-family: 'Raleway', sans-serif; margin: 0; padding: 0; }
 .footerCnt a {color: #2c3e50;text-decoration: none;}
 .footerCnt a.pP {margin-left: 1rem;}
 
+.privacyContainer {overflow: hidden;padding: 0 8%;}
+.TCContainer {overflow: hidden;padding: 0 8%;}
+
 .DevToast_toastContainer__ckw9c {display: none;}
 
 @media (max-width: 600px){
