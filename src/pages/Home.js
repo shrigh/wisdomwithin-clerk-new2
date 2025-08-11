@@ -10,7 +10,7 @@ export default function Home() {
       <section className="bnrCnt" style={{
         textAlign: 'center',
         padding: '6rem 1rem',
-        background: 'url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80) no-repeat center/cover',
+        background: 'url(../homr-bnr.jpg) no-repeat center/cover',
         color: 'white',
         borderRadius: 0,
         boxShadow: '0 4px 20px rgb(0 0 0 / 0.3)',
@@ -19,7 +19,7 @@ export default function Home() {
         <h1 style={{marginBottom: '1rem', textShadow: '1px 1px 4px rgba(0,0,0,0.7)', display:"inline-block" }}>
           Have a Life Question?
         </h1>
-        <p style={{ fontSize: '1.3rem', maxWidth: 500, margin: '0 auto 2rem', textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
+        <p style={{ fontSize: '1.3rem', maxWidth: 470, margin: '0 auto 2rem', textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
           Find timeless answers from Hindu scriptures clear, practical and personalized for you.
         </p>
         <button

@@ -131,10 +131,10 @@ export default function Quiz() {
       </section>
 
       <footer className="footerWrap">
-        <div>© 2025 PowerWithin. All rights reserved.</div>
+        <div>© 2025 My Eternal Guide. All rights reserved.</div>
         <div className="footerCnt">
-          <a href="#" >Terms & Conditions</a>
-          <a href="#" className="pP">Privacy Policy</a>
+          <a href="/termsconditions" >Terms & Conditions</a>
+          <a href="/privacypolicy" className="pP">Privacy Policy</a>
         </div>
       </footer>
 
