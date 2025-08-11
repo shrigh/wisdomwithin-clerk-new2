@@ -15,10 +15,13 @@ export default function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-    <h2>My Eternal Guide</h2>
-  </Link>
-        <div className="tagline">The Right Guidance. At The Right Time.</div>
+        <div className="logoImage"><Link to="/" style={{ textDecoration: "none" }}><img src="/My-Eternal-Guide-logo.png" alt="l" /></Link></div>
+        <div className="logoText">
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            <h2>My Eternal Guide</h2>
+          </Link>
+          <div className="tagline">The Right Guidance. At The Right Time.</div>
+        </div>   
       </div>
 
       <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
