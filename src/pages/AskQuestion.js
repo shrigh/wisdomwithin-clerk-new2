@@ -1,26 +1,26 @@
 import { useState, useEffect, useRef } from "react";
 import { useUser } from "@clerk/clerk-react";
+import DOMPurify from "dompurify";
+import parse from "html-react-parser";
 import "./AskQuestion.css";
 
 export default function AskQuestion() {
-  const { user } = useUser(); // Clerk user object
-  const [messages, setMessages] = useState([]); // Chat messages
-  const [question, setQuestion] = useState(""); // User input
-  const [loading, setLoading] = useState(false); // Loading state
-  const chatEndRef = useRef(null); // For auto scroll
+  const { user } = useUser();
+  const [messages, setMessages] = useState([]);
+  const [question, setQuestion] = useState("");
+  const [loading, setLoading] = useState(false);
+  const chatEndRef = useRef(null);
 
-  // Scroll to bottom whenever new messages are added
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Load chat history from backend on mount (if user is logged in)
   useEffect(() => {
     if (user) {
       fetch(`/api/chat-history?userId=${user.id}`)
         .then((res) => res.json())
         .then((data) => {
-          if (data && data.messages) {
+          if (data?.messages) {
             setMessages(data.messages);
           }
         })
@@ -28,13 +28,15 @@ export default function AskQuestion() {
     }
   }, [user]);
 
-  // Format timestamp for chat display
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   const formatTime = (time) => {
     const t = new Date(time);
     return t.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   };
 
-  // Send question and receive AI response
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!question.trim()) return;
@@ -53,16 +55,18 @@ export default function AskQuestion() {
       });
 
       const data = await res.json();
+
+      const cleanHTML = DOMPurify.sanitize(data.answer || "I don't have an answer right now.");
+
       const aiMessage = {
         sender: "ai",
-        text: data.answer || "I don't have an answer right now.",
+        text: cleanHTML,
         time: new Date(),
       };
 
       const finalMessages = [...updatedMessages, aiMessage];
       setMessages(finalMessages);
 
-      // Save chat to backend if user is logged in
       if (user) {
         await fetch("/api/save-chat", {
           method: "POST",
@@ -74,22 +78,19 @@ export default function AskQuestion() {
       console.error("Error generating response:", err);
       setMessages((prev) => [
         ...prev,
-        { sender: "ai", text: "Something went wrong.", time: new Date() },
+        { sender: "ai", text: "<p>Something went wrong.</p>", time: new Date() },
       ]);
     }
 
     setLoading(false);
   };
 
-  // Set default mantra message
   const requestMantra = () => {
     setQuestion("Can you share a mantra or prayer?");
   };
 
-  // Clear chat history (frontend + backend)
   const clearHistory = async () => {
     setMessages([]);
-
     if (user) {
       try {
         await fetch(`/api/clear-history`, {
@@ -111,7 +112,11 @@ export default function AskQuestion() {
         {messages.map((msg, i) => (
           <div key={i} className={`chat-message ${msg.sender}`}>
             <div className="chat-bubble">
-              <p>{msg.text}</p>
+              {msg.sender === "ai" ? (
+                parse(msg.text)
+              ) : (
+                <p>{msg.text}</p>
+              )}
               <span className="timestamp">{formatTime(msg.time)}</span>
             </div>
           </div>
@@ -137,18 +142,10 @@ export default function AskQuestion() {
         <button type="submit" disabled={loading}>
           {loading ? "..." : "Send"}
         </button>
-        <button
-          type="button"
-          onClick={requestMantra}
-          className="mantra-button"
-        >
+        <button type="button" onClick={requestMantra} className="mantra-button">
           🙏 Ask for Mantra
         </button>
-        <button
-          type="button"
-          onClick={clearHistory}
-          className="clear-button"
-        >
+        <button type="button" onClick={clearHistory} className="clear-button">
           🗑️ Clear History
         </button>
       </form>
