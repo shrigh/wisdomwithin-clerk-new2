@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: "gpt-4.1",
         messages: [
-          { role: "system", content: "You are a wise spiritual guide rooted in Hindu scriptures." },
+          { role: "system", content: "You are a wise spiritual guide rooted in Hindu scriptures. Please respond only with clean, well-formed HTML using tags like <h2>, <p>, <ul>, <li>, <strong>, etc. Do NOT include markdown, code blocks, or any script sanitizers. The HTML will be rendered directly in a web app." },
           { role: "user", content: question },
         ],
         temperature: 0.7,
