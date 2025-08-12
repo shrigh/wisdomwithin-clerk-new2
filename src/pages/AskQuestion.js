@@ -140,7 +140,7 @@ export default function AskQuestion() {
           placeholder="What is troubling you?"
         />
         <button type="submit" disabled={loading}>
-          {loading ? "..." : "Send"}
+          {loading ? "Thinking..." : "Send"}
         </button>
         <button type="button" onClick={requestMantra} className="mantra-button">
           🙏 Ask for Mantra
