@@ -125,7 +125,11 @@ export default function AskQuestion() {
         {loading && (
           <div className="chat-message ai">
             <div className="chat-bubble typing">
-              <p>Typing...</p>
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
             </div>
           </div>
         )}

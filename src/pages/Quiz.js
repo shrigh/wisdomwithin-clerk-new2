@@ -1,4 +1,3 @@
-// src/pages/Quiz.js
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -33,10 +32,17 @@ export default function Quiz() {
     "Saraswati (Wisdom & Speech)"
   ];
 
-  const [selectedEmotion, setSelectedEmotion] = useState("");
+  // changed from string to array
+  const [selectedEmotions, setSelectedEmotions] = useState([]);
   const [selectedPractices, setSelectedPractices] = useState([]);
   const [selectedEnergies, setSelectedEnergies] = useState([]);
   const [guruEnergy, setGuruEnergy] = useState("");
+
+  const toggleEmotion = (emotion) => {
+    setSelectedEmotions(prev =>
+      prev.includes(emotion) ? prev.filter(e => e !== emotion) : [...prev, emotion]
+    );
+  };
 
   const togglePractice = (practice) => {
     setSelectedPractices(prev =>
@@ -52,92 +58,89 @@ export default function Quiz() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // For now, just navigate to Ask Your Question (you can save quiz data later)
+    // Navigate to Ask Your Question (save quiz data later if needed)
     navigate('/ask');
   };
 
   return (
-    <main style={{  }}>
-    <section style={{ maxWidth: 700, margin: '2rem auto', padding: '0 1rem' }}>
-      <h2>Your Journey, Your Way</h2>
-      <p>Understanding your inner patterns allows us to personalize your guidance further.</p>
+    <main>
+      <section style={{ maxWidth: 700, margin: '2rem auto', padding: '0 1rem' }}>
+        <h2>Your Journey, Your Way</h2>
+        <p>Understanding your inner patterns allows us to personalize your guidance further.</p>
 
-      <form onSubmit={handleSubmit}>
-        {/* Emotional Tendencies */}
-        <fieldset style={{ marginBottom: '1.5rem' }}>
-          <legend><strong>Select the emotion you most wish to overcome:</strong></legend>
-          {emotions.map(em => (
-            <label key={em} style={{ display: 'block', margin: '0.3rem 0' }}>
+        <form onSubmit={handleSubmit}>
+          {/* Emotional Tendencies */}
+          <fieldset style={{ marginBottom: '1.5rem' }}>
+            <legend><strong>Select the emotion(s) you most wish to overcome:</strong></legend>
+            {emotions.map(em => (
+              <label key={em} style={{ display: 'block', margin: '0.3rem 0' }}>
+                <input
+                  type="checkbox"
+                  value={em}
+                  checked={selectedEmotions.includes(em)}
+                  onChange={() => toggleEmotion(em)}
+                /> {em}
+              </label>
+            ))}
+          </fieldset>
+
+          {/* Preferred Practice Formats */}
+          <fieldset style={{ marginBottom: '1.5rem' }}>
+            <legend><strong>Preferred Practice Formats (select all that apply):</strong></legend>
+            {practices.map(practice => (
+              <label key={practice} style={{ display: 'block', margin: '0.3rem 0' }}>
+                <input
+                  type="checkbox"
+                  value={practice}
+                  checked={selectedPractices.includes(practice)}
+                  onChange={() => togglePractice(practice)}
+                /> {practice}
+              </label>
+            ))}
+          </fieldset>
+
+          {/* Energies You Resonate With */}
+          <fieldset style={{ marginBottom: '1.5rem' }}>
+            <legend><strong>Energies You Resonate With (select all that apply):</strong></legend>
+            {energies.map(energy => (
+              <label key={energy} style={{ display: 'block', margin: '0.3rem 0' }}>
+                <input
+                  type="checkbox"
+                  value={energy}
+                  checked={selectedEnergies.includes(energy)}
+                  onChange={() => toggleEnergy(energy)}
+                /> {energy}
+              </label>
+            ))}
+            <label style={{ display: 'block', margin: '0.7rem 0 0.5rem' }}>
+              Your Guru or Other Energy (optional): <br />
               <input
-                type="radio"
-                name="emotion"
-                value={em}
-                checked={selectedEmotion === em}
-                onChange={() => setSelectedEmotion(em)}
-                
-              /> {em}
+                type="text"
+                value={guruEnergy}
+                onChange={e => setGuruEnergy(e.target.value)}
+                placeholder="Enter here"
+                style={{ width: '98%', padding: '0.3rem', marginTop: '0.3rem' }}
+              />
             </label>
-          ))}
-        </fieldset>
+          </fieldset>
 
-        {/* Preferred Practice Formats */}
-        <fieldset style={{ marginBottom: '1.5rem' }}>
-          <legend><strong>Preferred Practice Formats (select all that apply):</strong></legend>
-          {practices.map(practice => (
-            <label key={practice} style={{ display: 'block', margin: '0.3rem 0' }}>
-              <input
-                type="checkbox"
-                value={practice}
-                checked={selectedPractices.includes(practice)}
-                onChange={() => togglePractice(practice)}
-              /> {practice}
-            </label>
-          ))}
-        </fieldset>
-
-        {/* Energies You Resonate With */}
-        <fieldset style={{ marginBottom: '1.5rem' }}>
-          <legend><strong>Energies You Resonate With (select all that apply):</strong></legend>
-          {energies.map(energy => (
-            <label key={energy} style={{ display: 'block', margin: '0.3rem 0' }}>
-              <input
-                type="checkbox"
-                value={energy}
-                checked={selectedEnergies.includes(energy)}
-                onChange={() => toggleEnergy(energy)}
-              /> {energy}
-            </label>
-          ))}
-          <label style={{ display: 'block', margin: '0.7rem 0 0.5rem' }}>
-            Your Guru or Other Energy (optional): <br />
-            <input
-              type="text"
-              value={guruEnergy}
-              onChange={e => setGuruEnergy(e.target.value)}
-              placeholder="Enter here"
-              style={{ width: '98%', padding: '0.3rem', marginTop: '0.3rem' }}
-            />
-          </label>
-        </fieldset>
-
-        <button type="submit" style={{
-          backgroundColor: '#0070f3', color: 'white', border: 'none',
-          padding: '0.8rem 1.5rem', borderRadius: 6, cursor: 'pointer',
-          fontSize: '1rem',fontFamily:'Raleway, sans-serif'
-        }}>
-          Continue
-        </button>
-      </form>
+          <button type="submit" style={{
+            backgroundColor: '#0070f3', color: 'white', border: 'none',
+            padding: '0.8rem 1.5rem', borderRadius: 6, cursor: 'pointer',
+            fontSize: '1rem', fontFamily: 'Raleway, sans-serif'
+          }}>
+            Continue
+          </button>
+        </form>
       </section>
 
       <footer className="footerWrap">
         <div>© 2025 My Eternal Guide. All rights reserved.</div>
         <div className="footerCnt">
-          <a href="/termsconditions" >Terms & Conditions</a>
+          <a href="/termsconditions">Terms & Conditions</a>
           <a href="/privacypolicy" className="pP">Privacy Policy</a>
         </div>
       </footer>
-
     </main>
   );
 }
