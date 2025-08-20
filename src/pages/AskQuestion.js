@@ -51,12 +51,14 @@ export default function AskQuestion() {
       const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ messages: updatedMessages }), // ✅ send history
       });
 
       const data = await res.json();
 
-      const cleanHTML = DOMPurify.sanitize(data.answer || "I don't have an answer right now.");
+      const cleanHTML = DOMPurify.sanitize(
+        data.answer || "I don't have an answer right now."
+      );
 
       const aiMessage = {
         sender: "ai",
