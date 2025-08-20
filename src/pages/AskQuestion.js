@@ -48,10 +48,18 @@ export default function AskQuestion() {
     setLoading(true);
 
     try {
+      // Convert chat messages into OpenAI format
+      const historyForAPI = updatedMessages
+        .filter(msg => msg.sender === "user" || msg.sender === "ai")
+        .map(msg => ({
+          role: msg.sender === "user" ? "user" : "assistant",
+          content: msg.text,
+        }));
+
       const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: updatedMessages }), // ✅ send history
+        body: JSON.stringify({ question, history: historyForAPI }),
       });
 
       const data = await res.json();
