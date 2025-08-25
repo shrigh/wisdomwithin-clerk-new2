@@ -4,19 +4,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const { question, history } = req.body;
+  const { question } = req.body;
 
   if (!question) {
     return res.status(400).json({ error: "Missing question" });
   }
 
   try {
-    // Ensure every history message has a role and content
-    const formattedHistory = (history || []).map(msg => ({
-      role: msg.role || "user",   // default to "user" if missing
-      content: msg.content || "",
-    }));
-
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -24,16 +18,20 @@ export default async function handler(req, res) {
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-4.1",
+        model: "gpt-4.1", // or gpt-4o-mini for cheaper
         messages: [
           {
             role: "system",
-            content: "You are a wise spiritual guide rooted in Hindu scriptures. Respond with clean HTML (use <h2>, <p>, <ul>, etc). No markdown or code blocks."
+            content:
+              "You are a wise spiritual guide rooted in Hindu scriptures. Respond with clean HTML using <h2>, <p>, <ul>. No markdown or code blocks. Do not suggest or ask the user any follow-up questions."
           },
-          ...formattedHistory,
-          { role: "user", content: question },
+          {
+            role: "user",
+            content: question,
+          },
         ],
         temperature: 0.7,
+        max_tokens: 800,
       }),
     });
 
