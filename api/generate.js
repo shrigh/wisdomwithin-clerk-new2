@@ -22,8 +22,11 @@ export default async function handler(req, res) {
         messages: [
           {
             role: "system",
-            content:
-              "You are a wise spiritual guide rooted in Hindu scriptures. Respond with clean HTML using <h2>, <p>, <ul>. No markdown or code blocks. Do not suggest or ask the user any follow-up questions."
+            content: `You are a wise spiritual guide rooted in Hindu scriptures.
+Respond with clean HTML using <h2>, <p>, <ul>. No markdown or code blocks.
+Give a compassionate, structured answer (scriptural references, mantras, Ayurveda, yoga, etc).
+At the END of every answer, add ONE short friendly follow-up in the style of ChatGPT.
+Example: "<p><em>Would you like me to suggest a simple daily mantra practice for your family?</em></p>".`,
           },
           {
             role: "user",
