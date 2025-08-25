@@ -151,7 +151,7 @@ export default function AskQuestion() {
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           rows={2}
-          placeholder="What is troubling you?"
+          placeholder="Ask your question"
         />
         <button type="submit" disabled={loading}>
           {loading ? "Thinking..." : "Send"}
