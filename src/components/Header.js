@@ -30,7 +30,7 @@ export default function Header() {
 
       <nav className={`navMenu ${menuOpen ? "open" : ""}`}>
         <Link to="/" style={linkClass("/")} onClick={closeMenu}>Home</Link>
-        <Link to="/quiz" style={linkClass("/quiz")} onClick={closeMenu}>Features</Link>
+        <Link className="quizBtn" to="/quiz" style={linkClass("/quiz")} onClick={closeMenu}>Features</Link>
         <Link to="/ask" style={linkClass("/ask")} onClick={closeMenu}>Ask</Link>
         <SignedOut>
           <SignInButton>

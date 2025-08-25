@@ -23,7 +23,7 @@ export default function Home() {
           Find timeless answers from Hindu scriptures clear, practical and personalized for you.
         </p>
         <button
-          onClick={() => navigate('/quiz')}
+          onClick={() => navigate('/ask')}
           style={{
             padding: '1rem 2rem',
             fontSize: '1.2rem',

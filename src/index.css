@@ -10,6 +10,8 @@ body { font-family: 'Raleway', sans-serif; margin: 0; padding: 0; }
 .wrapPointerCnt.wrapPointerCntMid {margin: 0 3%;}
 .navMenu a {color: #2c3e50;text-decoration: none;font-size: medium;}
 .navMenu a:hover {color: #3499cd;}
+.quizBtn {display: none;}
+
 .footerWrap {text-align: center;background-color: #f9fafb;padding-top: 1rem;padding-bottom: 1rem;font-size: small;}
 .footerCnt a {color: #2c3e50;text-decoration: none;}
 .footerCnt a.pP {margin-left: 1rem;}
